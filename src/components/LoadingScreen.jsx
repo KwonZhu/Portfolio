@@ -11,7 +11,7 @@ export const LoadingScreen = ({ onComplete }) => {
       setText(fullText.substring(0, index)); //every time the interval runs, it will display one extra letter
       index++;
 
-      // Stop the interval and (1 second after) hide the LoadingScreen When the entire text is typed out
+      // Stop the interval and (1 second after) hide the LoadingScreen when the entire text is typed out
       if (index > fullText.length) {
         clearInterval(interval);
 
@@ -21,7 +21,8 @@ export const LoadingScreen = ({ onComplete }) => {
       }
     }, 100);
 
-    return () => clearInterval(interval); // to prevent memory leaks if the component unmounts
+    return () => clearInterval(interval); // stops the existing interval when the component unmounts or before useEffect runs again
+    // otherwise it will cause memory leaks—the interval would keep running in the background, even if the user leaves the page
   }, [onComplete]); //it runs once on the first render, or if onComplete changed
 
   return (
