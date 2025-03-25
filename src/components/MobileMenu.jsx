@@ -6,7 +6,10 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
       className={`fixed top-0 left-0 w-full bg-[rgba(10,10,10,0.8)] z-40 flex flex-col justify-center items-center transition-all duration-300 ease-in-out ${
         menuOpen
           ? "h-screen opacity-100 pointer-events-auto"
-          : "h-0 opacity-0 pointer-events-none"
+          : // It disables all mouse interactions with the hidden menu
+            // If use hidden instead of 'h-0 opacity-0 pointer-events-none', there will be no transition animation
+            // because hidden completely removes the element from rendering. The menu just "pops in" instead of fading in smoothly
+            "h-0 opacity-0 pointer-events-none"
       }`}>
       {/* Close button: X */}
       <button
