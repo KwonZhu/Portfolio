@@ -6,7 +6,7 @@ export const Home = () => {
       <div className="text-center z-10 px-4 ">
         {/* can't set the text to be gradient without setting the bg as gradient. The clip makes the background only appear where the text is, then makes the text-color transparent*/}
         {/* text-gradient: bg-gradient-to-r -> bg-clip-text -> text-transparent */}
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent leading-tight">
+        <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent leading-tight">
           Hi, I'm Kwon
         </h1>
 
