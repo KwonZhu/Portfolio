@@ -1,6 +1,6 @@
 export const About = () => {
-  const fronendSkills = ["React", "JavaScript", "TypeScript", "TailwindCss"];
-  const backendSkills = ["NodeJS", "MongoDB", "GraphQL", "C#", ".Net"];
+  const frontendSkills = ["React", "JavaScript", "TypeScript", "TailwindCss"];
+  const backendSkills = ["Node.js", "MongoDB", "GraphQL", "C#", ".Net"];
 
   return (
     <section
@@ -21,9 +21,9 @@ export const About = () => {
             <div className="rounded-xl p-6 hover:-translate-y-1 transition-all">
               <h3 className="text-xl font-bold mb-4">Frontend</h3>
               <div className="flex flex-wrap gap-2">
-                {fronendSkills.map((skill, key) => (
+                {frontendSkills.map((skill, index) => (
                   <span
-                    key={key}
+                    key={index}
                     className="bg-blue-500/10 text-blue-500 py-1 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
                     {skill}
                   </span>
@@ -65,12 +65,14 @@ export const About = () => {
             <div className="space-y-4 text-gray-300">
               <div>
                 <h4 className="font-semibold">
-                  Software Engineer at Meetly Omini (Dec 2024 - Mar 2025)
+                  Intern at Meetly Omini (Nov 2024 - Mar 2025)
                 </h4>
                 <p>Developed and maintained applications.</p>
               </div>
               <div>
-                <h4 className="font-semibold">Intern at MoocCourse </h4>
+                <h4 className="font-semibold">
+                  Intern at MoocCourse (Nov 2024 - Mar 2025){" "}
+                </h4>
                 <p>
                   Assisted in building front-end components and integrating REST
                   APIs.
