@@ -6,6 +6,7 @@ import { MobileMenu } from "./components/MobileMenu";
 import { Home } from "./components/sections/Home";
 import { About } from "./components/sections/About";
 import { Project } from "./components/sections/Project";
+import { Contact } from "./components/sections/Contact";
 import { useState } from "react";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Home />
         <About />
         <Project />
+        <Contact />
       </div>
     </>
   );
