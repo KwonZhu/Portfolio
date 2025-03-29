@@ -1,11 +1,25 @@
 import emailjs from "emailjs-com";
-import { useState } from "react";
+import { useState, useCallback } from "react";
+import debounce from "lodash/debounce";
+
 export const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
+
+  //useCallback(fn, deps): Memoizes the fn, it only re-creates the function if one of the dependencies in deps changes.
+  // Since the [] dependency array is empty, the debouncedSetFormData is only created once when the component mounts.
+  // Child component will receive the same function across renders, so it reduces unnecessary renders (instead of on every Parent re-render).
+  const debouncedSetFormData = useCallback(
+    // debounce((newData) => {...}, 500): The debounced function updates formData only if no new input happens within 500ms.
+    // If the user types again before 500ms, the previous function call is canceled.
+    debounce((newData) => {
+      setFormData((prev) => ({ ...prev, ...newData }));
+    }, 500),
+    []
+  );
 
   const handleSubmit = (e) => {
     // Prevent the default page refresh on form submission
@@ -45,9 +59,7 @@ export const Contact = () => {
               placeholder="Name..."
               value={formData.name}
               className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-w transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
-              onChange={(e) =>
-                setFormData({ ...formData, name: e.target.value })
-              }
+              onChange={(e) => debouncedSetFormData({ name: e.target.value })} // Calls the debounced function, delaying state updates.
             />
           </div>
           {/* Email Input Field */}
@@ -60,9 +72,7 @@ export const Contact = () => {
               placeholder="example@gmail.com"
               value={formData.email}
               className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-w transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
-              onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
-              }
+              onChange={(e) => debouncedSetFormData({ email: e.target.value })}
             />
           </div>
           {/* Message Input Field */}
@@ -76,7 +86,7 @@ export const Contact = () => {
               value={formData.message}
               className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-w transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
               onChange={(e) =>
-                setFormData({ ...formData, message: e.target.value })
+                debouncedSetFormData({ message: e.target.value })
               }
             />
           </div>
