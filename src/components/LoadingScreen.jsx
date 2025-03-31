@@ -6,7 +6,7 @@ export const LoadingScreen = ({ onComplete }) => {
 
   useEffect(() => {
     let index = 0; //the letter is being typed
-    //rerun every 100ms
+    //rerun(type a character) every 100ms
     const interval = setInterval(() => {
       setText(fullText.substring(0, index)); //every time the interval runs, it will display one extra letter
       index++;
@@ -26,9 +26,8 @@ export const LoadingScreen = ({ onComplete }) => {
   }, [onComplete]); //it runs once on the first render, or if onComplete changed
 
   return (
+    // The 'inset' class sets the distance between an element and the parent element (t/b/l/r)
     <div className="fixed inset-0 z-50 bg-black text-gray-100 flex flex-col justify-center items-center">
-      {/* The 'inset' class sets the distance between an element and the parent element (t/b/l/r) */}
-
       {/* typewriter */}
       <div className="mb-4 text-4xl font-mono font-bold">
         {text}

@@ -40,3 +40,16 @@ body {
     animation: loading 0.8s ease infinite;
   }
 }
+
+/*  hidden styles */
+.reveal {
+  opacity: 0;
+  /* start a little bit below it's supposed to be, so that we can have a lift up animation(translateY(0)) when it's visible  */
+  transform: translateY(20px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
