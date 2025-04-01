@@ -15,17 +15,23 @@ export const Contact = () => {
     // Send email using EmailJS with environment variables (stored in .env))
     emailjs
       .sendForm(
+        // access constants store in .env
         import.meta.env.VITE_SERVICE_ID,
         import.meta.env.VITE_TEMPLATE_ID,
         e.target,
         import.meta.env.VITE_PUBLIC_KEY
       )
+      // success case
       .then((result) => {
         alert("Message sent!");
         // Reset the form data after successful submission
         setFormData({ name: "", email: "", message: "" });
       })
-      .catch(() => alert("Oops! Something went wrong. Please tty again"));
+      // failure case
+      .catch((error) => {
+        console.error("EmailJS error:", error);
+        alert(`Error: ${error.text || "Unknown error"}`);
+      });
   };
 
   return (
@@ -33,7 +39,7 @@ export const Contact = () => {
       id="contact"
       className="min-h-screen flex justify-center items-center py-20">
       <RevealOnScroll>
-        <div className="px-4 w-150">
+        <div className="w-full mx-auto px-4 md:w-150 md:px-10">
           <h2 className="text-3xl text-center font-bold mb-8 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
             Get In Touch
           </h2>

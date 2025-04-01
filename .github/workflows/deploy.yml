@@ -1,0 +1,48 @@
+# name the workflow in GitHub's Actions tab
+name: Deploy to GitHub Pages
+
+# Trigger deployment on push to the "main" branch
+on:
+  push:
+    branches: ["main"]
+
+# Grants permissions to: write to repository contents, deploy to GitHub Pages, generate authentication tokens
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# Defines a job named "deploy" that runs on Ubuntu Linux
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repository code
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      # Build the project with environment variables from GitHub Secrets
+      - name: Build with env vars
+        env:
+          VITE_SERVICE_ID: ${{ secrets.VITE_SERVICE_ID }}
+          VITE_TEMPLATE_ID: ${{ secrets.VITE_TEMPLATE_ID }}
+          VITE_PUBLIC_KEY: ${{ secrets.VITE_PUBLIC_KEY }}
+        # Creates production files (the "dist" folder)
+        run: npm run build
+
+      # Upload (Prepares) the "dist" folder as an artifact for GitHub Pages deployment
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "dist"
+
+      # Deploys the uploaded artifact to GitHub Pages, makes your site publicly available at your GitHub Pages URL
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4

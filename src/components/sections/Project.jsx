@@ -41,6 +41,21 @@ export const Project = () => {
       ],
       link: "https://github.com/orgs/MoocDevTeam/repositories",
     },
+    {
+      title: "Weather Dashboard",
+      description:
+        "This is a modern weather app that allows users to search for real-time weather data of any city using the WeatherAPI.com API. It features an intuitive interface that displays current conditions, future forecasts, and weather details for multiple cities. The app also supports a responsive design to ensure a seamless experience across different screen sizes.",
+      techStack: [
+        "React",
+        "JavaScript",
+        "styled-components",
+        "WeatherAPI",
+        "RESTful API",
+        "Responsive Design",
+        "Cypress",
+      ],
+      link: "https://github.com/KwonZhu/weather-application",
+    },
   ];
 
   return (
