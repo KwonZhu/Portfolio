@@ -54,7 +54,7 @@ export const Project = () => {
         "Responsive Design",
         "Cypress",
       ],
-      link: "https://github.com/KwonZhu/weather-application",
+      link: "https://kwonzhu.github.io/weather-application/",
     },
   ];
 
